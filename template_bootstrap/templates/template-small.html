@@ -1,0 +1,18 @@
+{% extends "template.html" %}
+
+{% block body-class %} class="template-small"{% endblock body-class %}
+
+{% block header-wrapper %}{% endblock header-wrapper %}
+
+{% block footer-wrapper %}{% endblock footer-wrapper %}
+
+{% block content-block %}
+<div class="row">
+    <div class="span4 offset4 small-box block">
+        {% block main-block %}
+            <h1>{% block content-title %}{% endblock content-title %}</h1>
+            {% block content %}{% endblock content %}
+        {% endblock main-block %}
+    </div>
+</div>
+{% endblock content-block %}

@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+
+{% block content-container-class %}container-fluid{% endblock content-container-class %}
+{% block content-block %}
+<div class="row-fluid">
+  {% block sidebar-block %}
+  <div class="span3">
+      
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+          {% block sidebar %}{% endblock sidebar %}
+      </ul>
+    </div><!--/.well -->
+    
+  </div><!--/span-->
+  {% endblock sidebar-block %}
+  {% block main-block %}
+  <div class="span9">
+      <h1>{% block content-title %}{% endblock content-title %}</h1>
+      {% block content %}{% endblock content %}
+  </div><!--/span-->
+  {% endblock main-block %}
+</div><!--/row-->
+{% endblock content-block %}
