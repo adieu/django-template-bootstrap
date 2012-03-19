@@ -8,10 +8,14 @@
 
 {% block content-block %}
 <div class="row">
-    <div class="span4 offset4 small-box block">
+    <div class="span4 offset4 block">
         {% block main-block %}
-            <h1>{% block content-title %}{% endblock content-title %}</h1>
-            {% block content %}{% endblock content %}
+            <div class="block_head">
+                <h1>{% block content-title %}{% endblock content-title %}</h1>
+            </div>
+            <div class="block_content">
+                {% block content %}{% endblock content %}
+            </div>
         {% endblock main-block %}
     </div>
 </div>

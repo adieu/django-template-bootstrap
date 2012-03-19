@@ -7,18 +7,30 @@
   .template-normal;
 }
 
-.small-box {
-  position: relative;
-  .border-radius(4px);
-  padding: 20px;
-  background: @white;
-}
-
 .block {
-  .border-radius(4px);
-  background: @white;
-  border: 1px solid @grayLight;
   margin-bottom: 20px;
+  .block_head {
+	.border-radius(5px 5px 0 0);
+    border: 1px solid @grayLight;
+	background: @grayLighter;
+	h1 {
+		margin: 10px 10px;
+	}
+	h2 {
+		margin: 5px 10px;
+	}
+  }
+  .block_content {
+    background: @white;
+    border-left: 1px solid @grayLight;
+    border-right: 1px solid @grayLight;
+    border-bottom: 1px solid @grayLight;
+    .border-radius(0 0 5px 5px);
+	padding: 10px 10px 0;
+	table {
+		margin-bottom: 9px;
+	}
+  }
 }
 
 .footer {

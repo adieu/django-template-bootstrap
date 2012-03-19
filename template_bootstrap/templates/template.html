@@ -65,8 +65,12 @@
         {% endblock content-message %}
         {% block content-block %}
         <div class="block">
-            <h1>{% block content-title %}{% endblock content-title %}</h1>
-            {% block content %}{% endblock content %}
+            <div class="block_head">
+                <h1>{% block content-title %}{% endblock content-title %}</h1>
+            </div>
+            <div class="block_content">
+                {% block content %}{% endblock content %}
+            </div>
         </div>
         {% endblock content-block %}
     </div> <!-- /container -->
