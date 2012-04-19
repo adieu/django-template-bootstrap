@@ -1,21 +1,23 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from setuptools import setup, find_packages
 
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    import ez_setup
-    ez_setup.use_setuptools()
-    from setuptools import setup, find_packages
-    
-import os
 
 setup(
-    name = "django-template-bootstrap",
-    version = "0.1",
-    license = 'BSD',
-    description = "A django template based on twitter's bootstrap project.",
-    packages = find_packages(),
-    include_package_data = True,
-    zip_safe = False,
+    name="django-template-bootstrap",
+    version="0.1",
+    license='BSD',
+    description="A django template based on twitter's bootstrap project.",
+    author='Ivan Diao',
+    author_email='adieu@adieu.me',
+    url='http://github.com/adieu/django-template-bootstrap',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    classifiers=[
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "Intended Audience :: System Administrators",
+        "Operating System :: OS Independent",
+        "Topic :: Software Development"
+    ],
 )
