@@ -36,15 +36,26 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">{% block header-title %}{% endblock header-title %}</a>
+          {% if user.is_authenticated %}
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i> {{ user.username }}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url auth_profile %}">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url auth_logout %}">Sign Out</a></li>
+            </ul>
+          </div>
+          {% endif %}
           <div class="nav-collapse">
             <ul class="nav">
                 {% block header-nav %}
         	    {% endblock header-nav %}
             </ul>
-            {% if user.is_authenticated %}
-        	<p class="navbar-text pull-right">Hello, <a href="#">{{ user.username }}</a> | <a href="{% url auth_logout %}">Logout</a></p> 
-            {% else %}
-        	<p class="navbar-text pull-right"><a href="{% url registration_register %}">Register</a> | <a href="{% url auth_login %}">Login</a></p>                 
+            {% if not user.is_authenticated %}
+        	<p class="navbar-text pull-right"><a href="{% url registration_register %}">Register</a> | <a href="{% url auth_login %}">Login</a></p>
             {% endif %}
           </div><!--/.nav-collapse -->
         </div>
