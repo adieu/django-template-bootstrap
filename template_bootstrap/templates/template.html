@@ -36,6 +36,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">{% block header-title %}{% endblock header-title %}</a>
+          {% block header-user %}
           {% if user.is_authenticated %}
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -49,6 +50,7 @@
             </ul>
           </div>
           {% endif %}
+          {% endblock header-user %}
           <div class="nav-collapse">
             <ul class="nav">
                 {% block header-nav %}
