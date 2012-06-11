@@ -97,10 +97,10 @@ django:
 	mkdir -p template_bootstrap/static/css
 	mkdir -p template_bootstrap/static/js
 	cp img/* template_bootstrap/static/img/
-	lessc ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.css
-	lessc --compress ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.min.css
-	lessc ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.css
-	lessc --compress ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.min.css
+	recess --compile ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.css
+	recess --compress ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.min.css
+	recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.css
+	recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.min.css
 	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js > template_bootstrap/static/js/bootstrap.js
 	uglifyjs -nc template_bootstrap/static/js/bootstrap.js > template_bootstrap/static/js/bootstrap.min.js
 	cp js/tests/vendor/jquery.js template_bootstrap/static/js/
