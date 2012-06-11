@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock title %}</title>
@@ -24,7 +24,7 @@
     {% block extra-header %}{% endblock extra-header %}
   </head>
 
-  <body{% block body-class %} class="template-normal"{% endblock body-class %}>
+  <body class="{% block body-class %}template-normal{% endblock body-class %}">
     {% block wrapper %}
     {% block header-wrapper %}
     <div class="navbar{% block navbar-class %} navbar-fixed-top{% endblock  %}">
@@ -56,9 +56,11 @@
                 {% block header-nav %}
         	    {% endblock header-nav %}
             </ul>
+            {% block user-nav %}
             {% if not user.is_authenticated %}
-        	<p class="navbar-text pull-right"><a href="{% url registration_register %}">Register</a> | <a href="{% url auth_login %}">Login</a></p>
+          <p class="navbar-text pull-right"><a href="{% url registration_register %}">Register</a> | <a href="{% url auth_login %}">Login</a></p>
             {% endif %}
+            {% endblock user-nav %}
           </div><!--/.nav-collapse -->
         </div>
       </div>
