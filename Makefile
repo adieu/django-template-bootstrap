@@ -1,5 +1,6 @@
 BOOTSTRAP = ./docs/assets/css/bootstrap.css
 BOOTSTRAP_LESS = ./less/bootstrap.less
+BOOTSTRAP_FONTAWESOME_LESS = ./less/bootstrap-fontawesome.less
 BOOTSTRAP_RESPONSIVE = ./docs/assets/css/bootstrap-responsive.css
 BOOTSTRAP_RESPONSIVE_LESS = ./less/responsive.less
 DATE=$(shell date +%I:%M%p)
@@ -96,11 +97,16 @@ django:
 	mkdir -p template_bootstrap/static/img
 	mkdir -p template_bootstrap/static/css
 	mkdir -p template_bootstrap/static/js
+	mkdir -p template_bootstrap/static/font
 	cp img/* template_bootstrap/static/img/
+	cp fontawesome/font/* template_bootstrap/static/font/
+	cp fontawesome/less/font-awesome.less less/
 	recess --compile ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.css
 	recess --compress ${BOOTSTRAP_LESS} > template_bootstrap/static/css/bootstrap.min.css
 	recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.css
 	recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > template_bootstrap/static/css/bootstrap-responsive.min.css
+	recess --compile ${BOOTSTRAP_FONTAWESOME_LESS} > template_bootstrap/static/css/bootstrap-fontawesome.css
+	recess --compress ${BOOTSTRAP_FONTAWESOME_LESS} > template_bootstrap/static/css/bootstrap-fontawesome.min.css
 	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js > template_bootstrap/static/js/bootstrap.js
 	uglifyjs -nc template_bootstrap/static/js/bootstrap.js > template_bootstrap/static/js/bootstrap.min.js
 	cp js/tests/vendor/jquery.js template_bootstrap/static/js/
