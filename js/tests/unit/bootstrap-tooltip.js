@@ -33,7 +33,7 @@ $(function () {
           .tooltip({placement: 'bottom'})
           .tooltip('show')
 
-        ok($(".tooltip").hasClass('fade bottom in'), 'has correct classes applied')
+        ok($(".tooltip").is('.fade.bottom.in'), 'has correct classes applied')
         tooltip.tooltip('hide')
       })
 
@@ -69,10 +69,29 @@ $(function () {
         tooltip.trigger('mouseenter')
 
         setTimeout(function () {
-          ok(!$(".tooltip").hasClass('fade in'), 'tooltip is not faded in')
+          ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
           tooltip.trigger('mouseout')
           setTimeout(function () {
-            ok(!$(".tooltip").hasClass('fade in'), 'tooltip is not faded in')
+            ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
+            start()
+          }, 200)
+        }, 100)
+      })
+
+      test("should not show tooltip if leave event occurs before delay expires, even if hide delay is 0", function () {
+        var tooltip = $('<a href="#" rel="tooltip" title="Another tooltip"></a>')
+          .appendTo('#qunit-fixture')
+          .tooltip({ delay: { show: 200, hide: 0} })
+
+        stop()
+
+        tooltip.trigger('mouseenter')
+
+        setTimeout(function () {
+          ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
+          tooltip.trigger('mouseout')
+          setTimeout(function () {
+            ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
             start()
           }, 200)
         }, 100)
@@ -85,52 +104,41 @@ $(function () {
         stop()
         tooltip.trigger('mouseenter')
         setTimeout(function () {
-          ok(!$(".tooltip").hasClass('fade in'), 'tooltip is not faded in')
+          ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
           tooltip.trigger('mouseout')
           setTimeout(function () {
-            ok(!$(".tooltip").hasClass('fade in'), 'tooltip is not faded in')
+            ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
             start()
           }, 100)
         }, 50)
       })
 
-      test("should show tooltip if leave event hasn't occured before delay expires", function () {
+      test("should show tooltip if leave event hasn't occurred before delay expires", function () {
         var tooltip = $('<a href="#" rel="tooltip" title="Another tooltip"></a>')
           .appendTo('#qunit-fixture')
-          .tooltip({ delay: 200 })
+          .tooltip({ delay: 150 })
         stop()
         tooltip.trigger('mouseenter')
         setTimeout(function () {
-          ok(!$(".tooltip").hasClass('fade in'), 'tooltip is not faded in')
-          setTimeout(function () {
-            ok(!$(".tooltip").hasClass('fade in'), 'tooltip has faded in')
-            start()
-          }, 200)
+          ok(!$(".tooltip").is('.fade.in'), 'tooltip is not faded in')
         }, 100)
+        setTimeout(function () {
+          ok($(".tooltip").is('.fade.in'), 'tooltip has faded in')
+          start()
+        }, 200)
       })
 
-      test("should detect if title string is html or text: foo", function () {
-        ok(!$.fn.tooltip.Constructor.prototype.isHTML('foo'), 'correctly detected html')
-      })
-
-      test("should detect if title string is html or text: &amp;lt;foo&amp;gt;", function () {
-        ok(!$.fn.tooltip.Constructor.prototype.isHTML('&lt;foo&gt;'), 'correctly detected html')
-      })
-
-      test("should detect if title string is html or text: &lt;div>foo&lt;/div>", function () {
-        ok($.fn.tooltip.Constructor.prototype.isHTML('<div>foo</div>'), 'correctly detected html')
-      })
-
-      test("should detect if title string is html or text: asdfa&lt;div>foo&lt;/div>asdfasdf", function () {
-        ok($.fn.tooltip.Constructor.prototype.isHTML('asdfa<div>foo</div>asdfasdf'), 'correctly detected html')
-      })
-
-      test("should detect if title string is html or text: document.createElement('div')", function () {
-        ok($.fn.tooltip.Constructor.prototype.isHTML(document.createElement('div')), 'correctly detected html')
-      })
-
-      test("should detect if title string is html or text: $('&lt;div />)", function () {
-        ok($.fn.tooltip.Constructor.prototype.isHTML($('<div></div>')), 'correctly detected html')
+      test("should destroy tooltip", function () {
+        var tooltip = $('<div/>').tooltip().on('click.foo', function(){})
+        ok(tooltip.data('tooltip'), 'tooltip has data')
+        ok(tooltip.data('events').mouseover && tooltip.data('events').mouseout, 'tooltip has hover event')
+        ok(tooltip.data('events').click[0].namespace == 'foo', 'tooltip has extra click.foo event')
+        tooltip.tooltip('show')
+        tooltip.tooltip('destroy')
+        ok(!tooltip.hasClass('in'), 'tooltip is hidden')
+        ok(!tooltip.data('tooltip'), 'tooltip does not have data')
+        ok(tooltip.data('events').click[0].namespace == 'foo', 'tooltip still has click.foo')
+        ok(!tooltip.data('events').mouseover && !tooltip.data('events').mouseout, 'tooltip does not have any events')
       })
 
 })
