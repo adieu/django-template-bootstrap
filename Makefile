@@ -123,5 +123,6 @@ django:
 	recess --compress ${BOOTSTRAP_FONTAWESOME_LESS} > template_bootstrap/static/css/bootstrap-fontawesome.min.css
 	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > template_bootstrap/static/js/bootstrap.js
 	uglifyjs -nc template_bootstrap/static/js/bootstrap.js > template_bootstrap/static/js/bootstrap.min.js
+	cp js/tests/vendor/jquery.js template_bootstrap/static/js/
 
 .PHONY: docs watch gh-pages
