@@ -1,3 +1,4 @@
 include setup.py MANIFEST.in 
 recursive-include template_bootstrap/templates *
 recursive-include template_bootstrap/static *
+recursive-include template_bootstrap/locale *
