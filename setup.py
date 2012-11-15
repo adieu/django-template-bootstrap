@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-template-bootstrap",
-    version="0.2.9",
+    version="0.2.10",
     license='BSD',
     description="A django template based on twitter's bootstrap project.",
     author='Ivan Diao',

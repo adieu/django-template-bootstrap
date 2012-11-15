@@ -6136,6 +6136,8 @@ a.badge:hover {
 }
 
 .block .block_head {
+  width: 100%;
+  margin-left: -1px;
   background: #FBFBFB;
   border: 1px solid #DDD;
   -webkit-border-radius: 5px 5px 0 0;
@@ -6151,7 +6153,9 @@ a.badge:hover {
 }
 
 .block .block_content {
-  padding: 10px 10px 0;
+  width: 100%;
+  padding-top: 10px;
+  margin-left: -1px;
   background: #ffffff;
   border-right: 1px solid #DDD;
   border-bottom: 1px solid #DDD;
@@ -6163,6 +6167,11 @@ a.badge:hover {
 
 .block .block_content table {
   margin-bottom: 9px;
+}
+
+.block .block_content > p,
+.block .block_content > .p {
+  padding: 0 10px 0 10px;
 }
 
 .footer {
