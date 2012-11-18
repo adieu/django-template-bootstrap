@@ -5825,6 +5825,14 @@ a.badge:hover {
   padding: 0 10px 0 10px;
 }
 
+.block .block_content .control-group {
+  padding: 0 10px 0 10px;
+}
+
+.block .block_content .form-horizontal .control-group {
+  padding: 0;
+}
+
 .footer {
   padding: 5px 0 36px;
   margin-top: 25px;
